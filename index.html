@@ -149,16 +149,43 @@ dialog.single .arr,dialog.single #lbc{display:none}
 .rv.in{opacity:1;transform:none}
 .rv.now{transition:none}
 @media (prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}.rv{opacity:1;transform:none}h1 .sel i{transform:none}h1 .sel::before{clip-path:none}}
+
+:root{--dock:#1a73e8;--lav:rgba(150,155,225,.38)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--dock:#2b63c6;--lav:rgba(90,100,200,.28)}}
+:root[data-theme="dark"]{--dock:#2b63c6;--lav:rgba(90,100,200,.28)}
+.hero{min-height:100vh;min-height:100svh;display:flex;align-items:center;padding:3rem 0 7.5rem;background:radial-gradient(55% 65% at 82% 28%,var(--glow),transparent 70%),radial-gradient(38% 45% at 12% 100%,var(--lav),transparent 72%);background-color:var(--bg)}
+.hero .wrap{width:min(980px,100% - 2.5rem)}
+.hero p.hi{color:var(--ink);font-size:clamp(1.2rem,2.4vw,2.1rem)}
+h1{font-size:clamp(2.4rem,9vw,6.2rem)}
+.chips{position:relative;margin-bottom:4.5rem}
+.chips .year{margin-right:auto}
+.cursor{position:absolute;right:11%;top:calc(100% + .8rem);margin:0;padding:0;background:none;display:flex;flex-direction:column;align-items:flex-start}
+.cursor i{font-style:normal;background:#ff6b45;color:#fff;font-size:.8rem;padding:.25rem .7rem;border-radius:6px;margin:-.2rem 0 0 .8rem}
+.dock{position:fixed;left:50%;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:20;display:flex;align-items:center;gap:.6rem;max-width:calc(100vw - 1rem)}
+.pill{display:flex;gap:.2rem;padding:.4rem;border-radius:99px;background:var(--dock);box-shadow:0 10px 30px rgba(15,50,130,.28),0 0 0 2px rgba(255,255,255,.7)}
+.pill a{color:#fff;text-decoration:none;font-size:.95rem;padding:.55rem 1.1rem;border-radius:99px;white-space:nowrap;transition:background .25s,color .25s}
+.pill a:hover{background:rgba(255,255,255,.18)}
+.pill a.on{background:#fff;color:#3d4300}
+.call{display:grid;place-items:center;flex:none;width:3.15rem;height:3.15rem;border-radius:50%;background:var(--dock);color:#fff;box-shadow:0 10px 30px rgba(15,50,130,.28),0 0 0 2px rgba(255,255,255,.7);transition:transform .2s}
+.call:hover{transform:translateY(-2px)}
+.call svg{width:1.3rem;height:1.3rem}
+.dock a:focus-visible,#th:focus-visible{outline:3px solid var(--lime);outline-offset:2px}
+#th{position:fixed;right:1.4rem;bottom:calc(1.4rem + env(safe-area-inset-bottom,0px));z-index:20;width:2.6rem;height:2.6rem;background:var(--card);color:var(--ink);font-size:1.05rem;box-shadow:0 4px 14px rgba(0,0,0,.14)}
+footer{padding-bottom:6.5rem}
+@media (max-width:640px){#th{bottom:auto;top:calc(.8rem + env(safe-area-inset-top,0px));right:.8rem}.cursor{display:none}.chips{margin-bottom:2rem}}
+@media (max-width:420px){.pill a{padding:.5rem .8rem;font-size:.86rem}}
 </style>
 </head>
 <body>
 <div id="bar"></div>
-<nav><div class="wrap"><b>Firkan D.</b><div><a href="#about">About</a><a href="#experience">Experience</a><a href="#work">Work</a><a href="#contact">Contact</a></div><button id="th" type="button" aria-label="Switch light or dark theme">☾</button></div></nav>
+<div class="dock"><div class="pill" role="navigation" aria-label="Main"><a href="#about" class="on">About</a><a href="#experience">Experience</a><a href="#work">Works</a></div>
+<a class="call" href="https://wa.me/6281572152152" target="_blank" rel="noopener" aria-label="Chat on WhatsApp"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M6.6 10.8c1.4 2.8 3.8 5.1 6.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.1.4 2.3.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1z"/></svg></a></div>
+<button id="th" type="button" aria-label="Switch light or dark theme">☾</button>
 
-<header class="hero"><div class="wrap">
+<header class="hero" id="top"><div class="wrap">
 <p class="hi">Hi!<br>My name is <b>Firkan</b></p>
 <h1><span>GRAPHIC</span><span class="sel">DESIGNER<i></i><i></i><i></i><i></i></span></h1>
-<div class="chips"><span class="year">2026</span><button type="button" class="chip c1" data-f="w">✦ UI Design</button><button type="button" class="chip c2" data-f="s">✦ Social Media</button><button type="button" class="chip c3" data-f="b">✦ Branding</button><span class="cursor">Client</span></div>
+<div class="chips"><span class="year">2026</span><button type="button" class="chip c1" data-f="w">✦ UI Design</button><button type="button" class="chip c2" data-f="s">✦ Social Media</button><button type="button" class="chip c3" data-f="b">✦ Branding</button><span class="cursor"><svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true"><path d="M3 3l17 7-7 3-3 7z" fill="#ff6b45" stroke="#fff" stroke-width="1.2" stroke-linejoin="round"/></svg><i>Client</i></span></div>
 </div><div id="cur" aria-hidden="true"><span id="curl">Client</span></div></header>
 
 <section id="about"><div class="wrap">
@@ -294,8 +321,8 @@ function upd(){var vh=innerHeight,r=tl.getBoundingClientRect();tl.style.setPrope
 lis.forEach(function(l){l.classList.toggle("on",l.getBoundingClientRect().top<vh*.65)});
 bar2.style.width=(scrollY/Math.max(1,root.scrollHeight-vh)*100)+"%"}
 addEventListener("scroll",function(){if(!tk){tk=1;requestAnimationFrame(function(){tk=0;upd()})}},{passive:true});addEventListener("resize",upd);upd();
-var links=$$("nav a"),so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+e.target.id)})})},{rootMargin:"-45% 0px -50% 0px"});
-$$("section[id]").forEach(function(x){so.observe(x)});
+var links=$$(".pill a"),so=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle("on",a.getAttribute("href")==="#"+(e.target.id==="top"?"about":e.target.id))})})},{rootMargin:"-45% 0px -50% 0px"});
+$$("section[id],#top").forEach(function(x){so.observe(x)});
 /* text reveal on scroll down */
 var rv=$$(".about h3,.about p,.facts>div,.tl li,section h2,.filters,.count,.proj .ph>div:first-child>*,.stats>div,.contact p,.links,footer");
 rv.forEach(function(e){e.classList.add("rv")});

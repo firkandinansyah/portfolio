@@ -21,6 +21,9 @@
 <meta name="twitter:title" content="Firkan Dinansyah – Graphic Designer">
 <meta name="twitter:description" content="5+ years in visual branding, social media content, and UI design.">
 <meta name="twitter:image" content="https://firkandinansyah.github.io/portfolio/og-image.png">
+<!-- Google Analytics 4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-0PB122F3HS"></script>
+<script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag("js",new Date());gtag("config","G-0PB122F3HS");</script>
 <title>Firkan Dinansyah – Graphic Designer, Branding & UI</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,800;1,600&display=swap" rel="stylesheet">
@@ -661,7 +664,7 @@ document.body.appendChild(pgw);
 var pgCur=null,pgPushed=false;
 function pgRoute(){var m=location.hash.match(/^#\/project\/([\w-]+)/),el=m&&document.getElementById("pg-"+m[1]);
 if(pgCur&&pgCur!==el)pgCur.classList.remove("open");
-if(el){el.classList.add("open");el.scrollTop=0;document.body.classList.add("pg-open");pgCur=el;var b=pgw.querySelector(".pg-x");if(b)b.focus({preventScroll:true})}else{pgCur=null;document.body.classList.remove("pg-open")}}
+if(el){el.classList.add("open");el.scrollTop=0;document.body.classList.add("pg-open");if(pgCur!==el&&window.gtag)gtag("event","view_project",{project_slug:el.id.replace(/^pg-/,""),project_name:((el.querySelector("h2")||{}).textContent||"").trim()});pgCur=el;var b=pgw.querySelector(".pg-x");if(b)b.focus({preventScroll:true})}else{pgCur=null;document.body.classList.remove("pg-open")}}
 function pgClose(){if(pgPushed){pgPushed=false;history.back()}else{try{history.replaceState(null,"",location.pathname+location.search)}catch(x){}pgRoute()}}
 addEventListener("hashchange",function(){if(/^#\/project\//.test(location.hash))pgPushed=true;pgRoute()});
 pgw.addEventListener("click",function(e){if(e.target.closest(".pg-x")||e.target.classList.contains("pg-scrim"))pgClose()});
@@ -887,6 +890,20 @@ e.preventDefault();go(el.getBoundingClientRect().top+scrollY);
 </script>
 <script>
 (function(){document.querySelectorAll(".mp-card").forEach(function(c){c.addEventListener("click",function(e){if(e.target.closest("a"))return;location.hash="#/project/"+c.dataset.slug})})})();
+</script>
+<script>
+/* Google Analytics: pelacakan klik */
+(function(){
+function ev(n,p){if(window.gtag)gtag("event",n,p)}
+document.addEventListener("click",function(e){
+var a=e.target.closest&&e.target.closest("a");if(!a)return;
+var h=a.getAttribute("href")||"";
+if(a.matches(".cta-alt"))ev("download_portfolio",{location:"cta"});
+else if(a.matches(".dl"))ev("download_portfolio",{location:"floating_button"});
+else if(h.indexOf("wa.me/")>-1)ev("contact_click",{method:"whatsapp",location:a.matches(".cta-btn")?"cta":a.closest(".dock")?"dock":a.closest(".pj-foot")?"sidebar":"other"});
+else if(h.indexOf("mailto:")===0)ev("contact_click",{method:"email",location:a.closest(".ft")?"footer":"other"});
+},true);
+})();
 </script>
 </body>
 </html>
